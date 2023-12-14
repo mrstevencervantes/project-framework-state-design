@@ -1,0 +1,44 @@
+# Log record attributes: https://docs.python.org/3/library/logging.html#logrecord-attributes
+# Log levels: DEBUG, INFO, WARNING, ERROR, CRITICAL, EXCEPTION
+
+# The following escape codes are made available for use in the format string:
+# {color}, fg_{color}, bg_{color}: Foreground and background colors.
+# bold, bold_{color}, fg_bold_{color}, bg_bold_{color}: Bold/bright colors.
+# thin, thin_{color}, fg_thin_{color}: Thin colors (terminal dependent).
+# reset: Clear all formatting (both foreground and background colors).
+# The available color names are black, red, green, yellow, blue, purple, cyan and white.
+
+version: 1
+disable_existing_loggers: False
+formatters:
+  logFormatter:
+    format: "%(asctime)s | %(levelname)-8s | %(filename)s-%(funcName)s-%(lineno)04d | %(message)s"
+  consoleFormatter:
+    format: "%(levelname)-8s | %(filename)s-%(funcName)s-%(lineno)04d | %(message)s"
+  colorFormatter:
+    (): colorlog.ColoredFormatter
+    format: "%(log_color)s%(levelname)-8s%(reset)s %(filename)s-%(funcName)s-%(lineno)04d | %(message)s"
+    log_colors:
+      DEBUG: cyan
+      INFO: green
+      WARNING: yellow
+      ERROR: red
+      CRITICAL: bold_red,bg_white
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: DEBUG
+    stream: ext://sys.stdout
+  file:
+    class: logging.FileHandler
+    level: DEBUG
+    formatter: logFormatter
+    filename: "Data/Logs/debugging_file.log"
+loggers:
+  main:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: no
+root:
+  level: INFO
+  handlers: [console, file]

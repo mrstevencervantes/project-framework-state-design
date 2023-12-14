@@ -1,0 +1,6 @@
+{   
+    "config_path": "Config/Config.xlsx",
+    "logger_path": "Config/Logger_config.yaml",
+    "log_path": "Data/Logs/",
+    "logging_colors": true
+}

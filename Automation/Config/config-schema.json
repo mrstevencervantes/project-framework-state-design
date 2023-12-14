@@ -1,0 +1,41 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Config",
+    "properties": {
+        "config_path": {
+            "type": "string",
+            "description": "Path to the configuration file in Excel or CSV format.",
+            "pattern": "^.+(Config\\.xlsx|Config\\.csv)$",
+            "default": "Config/Config.xlsx",
+            "examples": [
+                "path_to_your_file/Config.xlsx",
+                "another_path/Config.csv"
+            ]
+        },
+        "logger_path": {
+            "type": "string",
+            "description": "Path to the logger configuration file.",
+            "pattern": "^.+\\.(yml|yaml)$",
+            "default": "Config/Logger_config.yaml",
+            "examples": [
+                "path_to_your_file/Logger_config.yaml",
+                "another_path/AnotherLoggerConfig.yml"
+            ]
+        },
+        "log_path": {
+            "type": "string",
+            "description": "Path to the debug log file."
+        },
+        "logging_colors": {
+            "type": "boolean",
+            "description": "Enable or disable colors in the logger.",
+            "default": true
+        }
+    },
+    "required": [
+        "config_path",
+        "logger_path",
+        "log_path"
+    ],
+    "additionalProperties": false
+}
